@@ -63,7 +63,8 @@ const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
-
+const lessRegex = /\.less$/;
+const lessModuleRegex = /\.module\.less$/;
 const hasJsxRuntime = (() => {
   if (process.env.DISABLE_NEW_JSX_TRANSFORM === 'true') {
     return false;
@@ -139,6 +140,19 @@ module.exports = function (webpackEnv) {
       },
     ].filter(Boolean);
     if (preProcessor) {
+      // 自定义主题颜色
+      let preProcessorOptions = {
+          sourceMap: true
+      }
+      if(preProcessor === 'less-loader'){
+        preProcessorOptions = {
+            sourceMap: true,
+            modifyVars:{
+                'primary-color':'#ce9b13' //全局主题主色
+            },
+            javascriptEnabled: true
+        }
+      }  
       loaders.push(
         {
           loader: require.resolve('resolve-url-loader'),
@@ -149,9 +163,7 @@ module.exports = function (webpackEnv) {
         },
         {
           loader: require.resolve(preProcessor),
-          options: {
-            sourceMap: true,
-          },
+          options: preProcessorOptions
         }
       );
     }
@@ -499,6 +511,7 @@ module.exports = function (webpackEnv) {
             // Opt-in support for SASS (using .scss or .sass extensions).
             // By default we support SASS Modules with the
             // extensions .module.scss or .module.sass
+            // sass配置
             {
               test: sassRegex,
               exclude: sassModuleRegex,
@@ -534,6 +547,38 @@ module.exports = function (webpackEnv) {
                 'sass-loader'
               ),
             },
+            // less配置
+            {
+                test: lessRegex,
+                exclude: lessModuleRegex,
+                use: getStyleLoaders(
+                  {
+                    importLoaders: 2,
+                    sourceMap: isEnvProduction
+                      ? shouldUseSourceMap
+                      : isEnvDevelopment,
+                  },
+                  'less-loader'
+                ),
+                sideEffects: true,
+              },
+              // Adds support for CSS Modules, but using LESS
+              // using the extension .module.scss or .module.LESS
+              {
+                test: lessModuleRegex,
+                use: getStyleLoaders(
+                  {
+                    importLoaders: 2,
+                    sourceMap: isEnvProduction
+                      ? shouldUseSourceMap
+                      : isEnvDevelopment,
+                    modules: {
+                      getLocalIdent: getCSSModuleLocalIdent,
+                    },
+                  },
+                  'less-loader'
+                ),
+              },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
             // In production, they would get copied to the `build` folder.

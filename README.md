@@ -68,3 +68,33 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+### 支持sass
+npm install node-sass --save-dev
+
+### 支持less
+- 安装
+npm install less less-loader --save-dev
+
+- 修改webpack.config.js
+```
+const lessRegex = /\.less$/;
+const lessModuleRegex = /\.module\.less$/;
+```
+根据sass配置下less项
+
+
+### 配置router
+npm install react-router-dom --save
+
+### redux react-redux redux-thunk
+npm install redux react-redux redux-thunk --save
+redux:更新store数据需要手动订阅更新
+react-redux:通过connect方法将store数据映射到组件props 省去手动订阅步骤 原读取store属性改用props读取
+redux-thunk:允许在actionCreators里返回函数，可以把业务逻辑集中起来，方便复用。
+
+### immutable
+store不能直接修改store(引用类型)
+
+### mock http-proxy-middleware
