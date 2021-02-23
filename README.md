@@ -100,9 +100,9 @@ store不能直接修改store(引用类型)
 ### mock http-proxy-middleware
 npm install mock http-proxy-middleware --save-dev
 
+### 借助react-app-rewired实现按需打包
+新增文件config-overrides.js 修改默认打包配置
 
-### 安装Ant Design
-npm install antd --save
 
 按需加载
 npm install babel-plugin-import --save-dev
@@ -110,7 +110,7 @@ npm install babel-plugin-import --save-dev
 ### 移动端适配
 npm install amfe-flexible postcss-px2rem  --save
 
-webpack.config.js添加
+config-overrides.js添加
 ```
 px2rem({remUnit: 75})
 ```
