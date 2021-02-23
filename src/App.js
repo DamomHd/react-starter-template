@@ -3,16 +3,16 @@
  * @version: v1.0
  * @Author: hongda_huang
  * @Date: 2021-02-05 12:43:34
- * @LastEditTime: 2021-02-23 11:11:50
+ * @LastEditTime: 2021-02-23 15:27:30
  * @description: 
  */
 
-import {Fragment,useState,useEffect,useReducer} from 'react'
+import {Fragment,useState,useEffect} from 'react'
 // Fragment可理解为vue template
 
-import { HashRouter, Route, Switch, Redirect} from 'react-router-dom' 
+import { HashRouter} from 'react-router-dom' 
 import { renderRoutes } from "react-router-config";
-import router from "@/router";
+import router from "./router";
 function App() {
     const [count, setCount] = useState(0);
     const [number, setNumber] = useState(0);

@@ -3,11 +3,12 @@
  * @version: v1.0
  * @Author: hongda_huang
  * @Date: 2021-02-05 12:43:34
- * @LastEditTime: 2021-02-19 18:53:19
+ * @LastEditTime: 2021-02-23 13:27:49
  * @description: 
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'amfe-flexible'; 
 import './common/style/index.less';
 import store from "./store";
 import { Provider } from "react-redux";

@@ -98,3 +98,21 @@ redux-thunk:允许在actionCreators里返回函数，可以把业务逻辑集中
 store不能直接修改store(引用类型)
 
 ### mock http-proxy-middleware
+npm install mock http-proxy-middleware --save-dev
+
+
+### 安装Ant Design
+npm install antd --save
+
+按需加载
+npm install babel-plugin-import --save-dev
+
+### 移动端适配
+npm install amfe-flexible postcss-px2rem  --save
+
+webpack.config.js添加
+```
+px2rem({remUnit: 75})
+```
+index.js中
+import 'amfe-flexible';

@@ -3,7 +3,7 @@
  * @version: v1.0
  * @Author: hongda_huang
  * @Date: 2021-02-19 16:27:14
- * @LastEditTime: 2021-02-19 19:52:45
+ * @LastEditTime: 2021-02-23 15:53:24
  * @description: 
  */
 import React, { Component } from 'react'
@@ -13,7 +13,8 @@ import * as actionCreators from './store/actionCreators'
 import axios from 'axios'
 import { API_CODE, API_LIST, API_FAILED} from '../../common/js/api.js'
 // import './login.styl'
-import {Button} from 'antd'
+import Nav from '../../components/nav'
+import { Button } from 'antd-mobile';
 class Login extends Component {
     render() {
         return (
@@ -21,9 +22,10 @@ class Login extends Component {
                 <Header />
                 <h1>Login page</h1>
                 <p>login: myData = {this.props.myData}</p>
-                <Button onClick={()=> {this.props.setData('123456')}}>更改login的myData</Button>
+                <Button type="warning" onClick={()=> {this.props.setData('123456')}}>更改login的myData</Button>
                 <Button onClick={this.getData}>Ajax请求</Button>
                 <Button onClick={this.gotoHome.bind(this)}>跳转Home页</Button>
+                <Nav />
             </div>
         )
     }
